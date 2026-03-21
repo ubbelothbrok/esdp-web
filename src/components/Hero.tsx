@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const slides = [
   {
@@ -111,7 +111,7 @@ export default function Hero() {
         </AnimatePresence>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex flex-col sm:flex-row gap-4 mb-16">
           <Link
             href="#register"
             className="px-8 py-4 bg-white text-[#0A192F] rounded-full font-bold text-lg hover:bg-[#F26522] hover:text-white transition-all shadow-xl flex items-center justify-center group"
@@ -126,24 +126,10 @@ export default function Hero() {
             Browse Programs
           </Link>
         </div>
+
       </div>
 
-      {/* ── Slide Controls ── */}
-      {/* Prev / Next arrows */}
-      <button
-        onClick={prev}
-        aria-label="Previous slide"
-        className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-white/30 backdrop-blur border border-white/20 text-white rounded-full p-3 transition-all"
-      >
-        <ChevronLeft className="w-6 h-6" />
-      </button>
-      <button
-        onClick={next}
-        aria-label="Next slide"
-        className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-white/30 backdrop-blur border border-white/20 text-white rounded-full p-3 transition-all"
-      >
-        <ChevronRight className="w-6 h-6" />
-      </button>
+
 
       {/* Dot indicators */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center space-x-3">
