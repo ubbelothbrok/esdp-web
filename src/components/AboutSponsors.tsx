@@ -49,12 +49,12 @@ export default function AboutSponsors() {
             Proudly Sponsored & Organized By
           </p>
           <div className="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-24 opacity-80 hover:opacity-100 transition-all duration-500">
-            {/* MSME Placeholder Logo */}
+            {/* MSME Logo */}
             <div className="flex items-center space-x-4 bg-slate-50 px-6 py-4 rounded-2xl border border-slate-200">
-              <div className="w-16 h-16 bg-[#F26522] rounded-full flex items-center justify-center text-white font-black text-xs p-2 text-center leading-tight shadow-md">
-                MSME
+              <div className="w-24 md:w-32 flex-shrink-0 flex items-center justify-center">
+                <img src="/msme-logo.png" alt="Ministry of MSME" className="max-w-full h-auto object-contain" />
               </div>
-              <div>
+              <div className="hidden sm:block">
                 <div className="text-xl font-black text-slate-800 tracking-tight">Ministry of MSME</div>
                 <div className="text-xs font-semibold text-slate-500 uppercase">Government of India</div>
               </div>
@@ -62,13 +62,13 @@ export default function AboutSponsors() {
             
             <div className="hidden md:block w-px h-16 bg-slate-200"></div>
 
-            {/* I3C Placeholder Logo */}
+            {/* IIT Jammu Logo */}
             <div className="flex items-center space-x-4 bg-slate-50 px-6 py-4 rounded-2xl border border-slate-200">
-              <div className="w-16 h-16 bg-[#0A192F] rounded-lg flex items-center justify-center text-white font-black text-2xl shadow-md">
-                I3C
+              <div className="w-24 md:w-32 flex-shrink-0 flex items-center justify-center">
+                <img src="/iit-jammu-logo.png" alt="IIT Jammu" className="max-w-full h-auto object-contain" />
               </div>
-              <div>
-                <div className="text-xl font-black text-slate-800 tracking-tight">IIT Jammu I3C</div>
+              <div className="hidden sm:block">
+                <div className="text-xl font-black text-slate-800 tracking-tight">IIT Jammu</div>
                 <div className="text-xs font-semibold text-slate-500 uppercase">Incubation Center</div>
               </div>
             </div>

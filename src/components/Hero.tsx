@@ -99,6 +99,12 @@ export default function Hero() {
                 IIT Jammu, Jagti Campus
               </div>
             </div>
+
+            <div className="mt-10 pt-8 border-t border-slate-200/60 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-8 opacity-90">
+              <img src="/msme-logo.png" alt="Ministry of MSME" className="h-12 object-contain mix-blend-multiply" />
+              <div className="hidden sm:block w-px h-10 bg-slate-200"></div>
+              <img src="/iit-jammu-logo.png" alt="IIT Jammu I3C" className="h-12 object-contain mix-blend-multiply" />
+            </div>
           </motion.div>
 
           <motion.div

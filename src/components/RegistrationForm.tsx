@@ -78,6 +78,13 @@ export default function RegistrationForm() {
                 </div>
               </div>
             </div>
+
+            <div className="mt-12 p-6 bg-white/5 border border-white/10 rounded-2xl inline-block backdrop-blur-sm">
+              <p className="text-sm font-semibold text-slate-300 mb-4 uppercase tracking-wider">Scan to apply on mobile</p>
+              <div className="bg-white p-2 rounded-xl inline-block shadow-lg">
+                <img src="/qr-code.png" alt="Registration QR Code" className="w-32 h-32 object-contain" />
+              </div>
+            </div>
           </div>
 
           <div className="glass-dark rounded-3xl p-8 sm:p-10 border border-white/10 shadow-2xl relative backdrop-blur-xl">
