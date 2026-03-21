@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import { ArrowLeft, Calendar, MapPin, CheckCircle2 } from "lucide-react";
+import CoordinatorImage from "@/components/CoordinatorImage";
 
 export function generateStaticParams() {
   return programs.map((prog) => ({
@@ -118,12 +119,8 @@ export default async function ProgramDetail({ params }: { params: Promise<{ slug
               <div className="space-y-8 relative z-10">
                 {program.coordinators.map((coord, idx) => (
                   <div key={idx} className="flex items-center space-x-4">
-                    <div className="w-16 h-16 rounded-full overflow-hidden bg-slate-100 flex-shrink-0 border-2 border-white shadow-md">
-                      <img 
-                        src={coord.image} 
-                        alt={coord.name} 
-                        className="w-full h-full object-cover bg-white"
-                      />
+                    <div className="w-16 h-16 rounded-full overflow-hidden bg-slate-100 flex-shrink-0 border-2 border-slate-200 shadow-sm flex items-center justify-center">
+                      <CoordinatorImage src={coord.image} alt={coord.name} />
                     </div>
                     <div>
                       <h4 className="font-bold text-[#0A192F]">{coord.name}</h4>
