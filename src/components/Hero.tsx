@@ -1,155 +1,164 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { Calendar, MapPin, ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+
+const slides = [
+  {
+    src: "/hero1.png",
+    heading: "Nurturing MSME Innovation",
+    sub: "A 5-day intensive programme at IIT Jammu, fully sponsored by the Ministry of MSME, designed to transform aspiring entrepreneurs into tomorrow's changemakers.",
+  },
+  {
+    src: "/hero2.png",
+    heading: "Empowering Entrepreneurs",
+    sub: "Unlock cutting-edge skills in AI, Smart Manufacturing, Bio-Entrepreneurship, and Sustainable Agriculture — all under one roof.",
+  },
+  {
+    src: "/hero3.png",
+    heading: "Launch Your Startup Journey",
+    sub: "Gain mentorship, hands-on workshops, and networking opportunities with industry leaders and IIT Jammu faculty.",
+  },
+];
 
 export default function Hero() {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
-
-  const [mounted, setMounted] = useState(false);
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    setMounted(true);
-    // Set event date to April 15, 2026 for demonstration
-    const eventDate = new Date("2026-04-15T09:00:00").getTime();
-
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = eventDate - now;
-
-      if (distance < 0) {
-        clearInterval(timer);
-        return;
-      }
-
-      setTimeLeft({
-        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((distance % (1000 * 60)) / 1000)
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
+    const interval = setInterval(() => {
+      setCurrent((p) => (p + 1) % slides.length);
+    }, 7000);
+    return () => clearInterval(interval);
   }, []);
 
-  return (
-    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-slate-50 min-h-screen flex items-center">
-      {/* Background decoration */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-10">
-        <div className="absolute -top-[10%] -right-[10%] w-[50%] h-[50%] rounded-full bg-blue-100/50 blur-3xl opacity-60" />
-        <div className="absolute top-[20%] -left-[10%] w-[40%] h-[40%] rounded-full bg-orange-100/30 blur-3xl opacity-60" />
-      </div>
+  const prev = () => setCurrent((c) => (c - 1 + slides.length) % slides.length);
+  const next = () => setCurrent((c) => (c + 1) % slides.length);
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          
-          <motion.div
+  return (
+    <section className="relative w-full min-h-screen overflow-hidden">
+
+      {/* ── Sliding Backgrounds ── */}
+      {slides.map((slide, idx) => (
+        <div
+          key={idx}
+          className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out ${
+            idx === current ? "opacity-100 z-0" : "opacity-0 -z-10"
+          }`}
+        >
+          <img
+            src={slide.src}
+            alt={slide.heading}
+            className="w-full h-full object-cover object-center"
+            onError={(e) => {
+              const fallbacks = [
+                "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=2000&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop",
+                "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2000&auto=format&fit=crop",
+              ];
+              e.currentTarget.src = fallbacks[idx] ?? fallbacks[0];
+            }}
+          />
+          {/* Dark gradient overlay so text is readable */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
+        </div>
+      ))}
+
+      {/* ── Foreground Content ── */}
+      <div className="relative z-10 flex flex-col items-start justify-center min-h-screen px-8 sm:px-16 lg:px-24 pt-28 pb-20 max-w-5xl">
+
+        {/* MSME badge */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur border border-white/20 rounded-full px-4 py-1.5 mb-6"
+        >
+          <span className="flex h-2 w-2 relative">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F26522] opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F26522]" />
+          </span>
+          <span className="text-xs font-semibold text-white uppercase tracking-wider">Fully Sponsored by MSME</span>
+        </motion.div>
+
+        {/* Animated Heading */}
+        <AnimatePresence mode="wait">
+          <motion.h1
+            key={`heading-${current}`}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center lg:text-left"
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+            className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-[1.05] tracking-tight mb-6"
           >
-            <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-md border border-slate-200 rounded-full px-4 py-1.5 mb-6">
-              <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F26522] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F26522]"></span>
-              </span>
-              <span className="text-xs font-semibold text-slate-700 uppercase tracking-wider">Fully Sponsored by MSME</span>
-            </div>
-            
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-[#0A192F] tracking-tight mb-6 leading-[1.1]">
-              Nurturing <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0A192F] to-[#F26522]">MSME Innovation</span>
-            </h1>
-            
-            <p className="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl mx-auto lg:mx-0">
-              Join the brightest aspiring entrepreneurs and engineering students at IIT Jammu for an intensive program focused on clean-tech, smart manufacturing, and bio-entrepreneurship.
-            </p>
+            {slides[current].heading}
+          </motion.h1>
+        </AnimatePresence>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mb-10">
-              <Link
-                href="#register"
-                className="w-full sm:w-auto px-8 py-4 bg-[#0A192F] text-white rounded-full font-bold text-lg hover:bg-[#F26522] transition-colors shadow-lg shadow-blue-900/20 flex items-center justify-center group"
-              >
-                Apply Now
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link
-                href="#schedule"
-                className="w-full sm:w-auto px-8 py-4 bg-white text-[#0A192F] border border-slate-200 rounded-full font-bold text-lg hover:bg-slate-50 transition-colors shadow-sm flex items-center justify-center"
-              >
-                View Schedule
-              </Link>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-3 sm:space-y-0 sm:space-x-8 text-sm font-medium text-slate-500">
-              <div className="flex items-center">
-                <Calendar className="w-4 h-4 mr-2 text-[#F26522]" />
-                April 15-18, 2026
-              </div>
-              <div className="flex items-center">
-                <MapPin className="w-4 h-4 mr-2 text-[#F26522]" />
-                IIT Jammu, Jagti Campus
-              </div>
-            </div>
-
-            <div className="mt-10 pt-8 border-t border-slate-200/60 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-8 opacity-90">
-              <img src="/msme-logo.png" alt="Ministry of MSME" className="h-12 object-contain mix-blend-multiply" />
-              <div className="hidden sm:block w-px h-10 bg-slate-200"></div>
-              <img src="/iit-jammu-logo.png" alt="IIT Jammu I3C" className="h-12 object-contain mix-blend-multiply" />
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:ml-auto w-full max-w-md mx-auto lg:max-w-none"
+        {/* Animated Subheading */}
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={`sub-${current}`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-base sm:text-lg lg:text-xl text-white/80 max-w-2xl mb-10 leading-relaxed"
           >
-            <div className="glass-dark rounded-3xl p-8 relative overflow-hidden backdrop-blur-2xl border border-white/10 shadow-2xl">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#F26522] rounded-full mix-blend-screen filter blur-[60px] opacity-30 pointer-events-none" />
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-blue-400 rounded-full mix-blend-screen filter blur-[60px] opacity-20 pointer-events-none" />
-              
-              <h3 className="text-white text-xl font-bold mb-6 text-center antialiased">Registration Closes In</h3>
-              
-              {mounted && (
-                <div className="grid grid-cols-4 gap-3 md:gap-4 text-center">
-                  <div className="bg-white/10 rounded-2xl p-3 md:p-4 border border-white/5 backdrop-blur-md">
-                    <div className="text-3xl md:text-4xl font-black text-white tabular-nums">{timeLeft.days}</div>
-                    <div className="text-[10px] md:text-xs font-semibold text-slate-400 mt-1 uppercase tracking-wider">Days</div>
-                  </div>
-                  <div className="bg-white/10 rounded-2xl p-3 md:p-4 border border-white/5 backdrop-blur-md">
-                    <div className="text-3xl md:text-4xl font-black text-white tabular-nums">{timeLeft.hours.toString().padStart(2, '0')}</div>
-                    <div className="text-[10px] md:text-xs font-semibold text-slate-400 mt-1 uppercase tracking-wider">Hours</div>
-                  </div>
-                  <div className="bg-white/10 rounded-2xl p-3 md:p-4 border border-white/5 backdrop-blur-md">
-                    <div className="text-3xl md:text-4xl font-black text-blue-400 tabular-nums">{timeLeft.minutes.toString().padStart(2, '0')}</div>
-                    <div className="text-[10px] md:text-xs font-semibold text-slate-400 mt-1 uppercase tracking-wider">Mins</div>
-                  </div>
-                  <div className="bg-white/10 rounded-2xl p-3 md:p-4 border border-white/5 backdrop-blur-md">
-                    <div className="text-3xl md:text-4xl font-black text-[#F26522] tabular-nums">{timeLeft.seconds.toString().padStart(2, '0')}</div>
-                    <div className="text-[10px] md:text-xs font-semibold text-slate-400 mt-1 uppercase tracking-wider">Secs</div>
-                  </div>
-                </div>
-              )}
-              
-              <div className="mt-8 pt-6 border-t border-white/10">
-                <p className="text-sm text-center text-slate-300">
-                  Limited seats available. Selection based on prototype merit and interview.
-                </p>
-              </div>
-            </div>
-          </motion.div>
+            {slides[current].sub}
+          </motion.p>
+        </AnimatePresence>
 
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4">
+          <Link
+            href="#register"
+            className="px-8 py-4 bg-white text-[#0A192F] rounded-full font-bold text-lg hover:bg-[#F26522] hover:text-white transition-all shadow-xl flex items-center justify-center group"
+          >
+            Apply Now
+            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
+          <Link
+            href="/programs"
+            className="px-8 py-4 bg-transparent text-white border-2 border-white/60 rounded-full font-bold text-lg hover:border-white hover:bg-white/10 transition-all flex items-center justify-center"
+          >
+            Browse Programs
+          </Link>
         </div>
       </div>
+
+      {/* ── Slide Controls ── */}
+      {/* Prev / Next arrows */}
+      <button
+        onClick={prev}
+        aria-label="Previous slide"
+        className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-white/30 backdrop-blur border border-white/20 text-white rounded-full p-3 transition-all"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+      <button
+        onClick={next}
+        aria-label="Next slide"
+        className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 bg-white/10 hover:bg-white/30 backdrop-blur border border-white/20 text-white rounded-full p-3 transition-all"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </button>
+
+      {/* Dot indicators */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center space-x-3">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            aria-label={`Go to slide ${i + 1}`}
+            className={`rounded-full transition-all duration-300 ${
+              i === current ? "w-8 h-3 bg-white" : "w-3 h-3 bg-white/40 hover:bg-white/70"
+            }`}
+          />
+        ))}
+      </div>
+
     </section>
   );
 }
