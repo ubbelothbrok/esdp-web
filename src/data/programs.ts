@@ -12,6 +12,7 @@ export const programs = [
       "Guidance on building innovative Bio-economy startups."
     ],
     whoCanApply: "Startup Founders, Aspiring Entrepreneurs, Post-Graduate students from Biotechnology.",
+    image: "/programs/bio-entrepreneurship.jpg",
     coordinators: [
       { name: "Dr. Vijay K Pal", role: "Mechanical Engineering", email: "vijay.pal@iitjammu.ac.in", image: "/coordinators/vijay.png" },
       { name: "Dr. Nitesh Kumar", role: "Materials Engineering", email: "nitesh.kumar@iitjammu.ac.in", image: "/coordinators/nitesh.png" }
@@ -30,6 +31,7 @@ export const programs = [
       "Cost management and manufacturing tech implementation."
     ],
     whoCanApply: "Startup Founders, Engineering Graduates, Academic researchers.",
+    image: "/programs/make-in-india.png",
     coordinators: [
       { name: "Dr. Vijay K Pal", role: "Mechanical Engineering", email: "vijay.pal@iitjammu.ac.in", image: "/coordinators/vijay.png" },
       { name: "Dr. Shiva Sekar", role: "Mechanical Engineering", email: "shiva.sekar@iitjammu.ac.in", image: "/coordinators/shiva.png" }
@@ -48,6 +50,7 @@ export const programs = [
       "Industrial visit to witness autonomous systems in action."
     ],
     whoCanApply: "Startup Founders, Engineers, Tech-innovators aimed at digital gap bridging.",
+    image: "/programs/ai-ml-smart-manufacturing.jpg",
     coordinators: [
       { name: "Dr. Vijay K Pal", role: "Mechanical Engineering", email: "vijay.pal@iitjammu.ac.in", image: "/coordinators/vijay.png" },
       { name: "Dr. Rajkumar Velu", role: "Mechanical Engineering", email: "rajkumar.v@iitjammu.ac.in", image: "/coordinators/rajkumar.png" }
@@ -66,6 +69,7 @@ export const programs = [
       "Field visit to a Renewable Energy installation hub."
     ],
     whoCanApply: "Young professionals, Policy makers, Electrical Engineering Graduates.",
+    image: "/programs/energy-generation.jpg",
     coordinators: [
       { name: "Dr. Vijay K Pal", role: "Mechanical Engineering", email: "vijay.pal@iitjammu.ac.in", image: "/coordinators/vijay.png" },
       { name: "Dr. Ashutosh Yadav", role: "Chemical Engineering", email: "ashutosh.yadav@iitjammu.ac.in", image: "/coordinators/ashutosh.png" }
@@ -84,6 +88,7 @@ export const programs = [
       "Field visit to a high-tech Smart Farm ecosystem."
     ],
     whoCanApply: "Agri-Tech Startup Founders, Environmental Sciences Post-Graduates, Agri-consultants.",
+    image: "/programs/sustainable-agriculture.jpg",
     coordinators: [
       { name: "Dr. Vijay K Pal", role: "Mechanical Engineering", email: "vijay.pal@iitjammu.ac.in", image: "/coordinators/vijay.png" },
       { name: "Dr. Sudhakar Modem", role: "Electrical Engineering", email: "sudhakar.modem@iitjammu.ac.in", image: "/coordinators/sudhakar.png" }

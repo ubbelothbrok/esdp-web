@@ -5,19 +5,19 @@ const projects = [
     title: "EcoDrone Systems",
     category: "Smart Manufacturing",
     description: "Autonomous aerial vehicles optimized for precision agriculture and MSME supply chain monitoring.",
-    imgPlaceholder: "bg-emerald-100 text-emerald-600"
+    image: "https://images.unsplash.com/photo-1473960103211-8ec305988ad7?q=80&w=800&auto=format&fit=crop"
   },
   {
     title: "BioSense Analytics",
     category: "Bio-Entrepreneurship",
     description: "Affordable, portable diagnostic kits leveraging AI for rapid rural healthcare screening.",
-    imgPlaceholder: "bg-purple-100 text-purple-600"
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=800&auto=format&fit=crop"
   },
   {
     title: "CleanWatt Innovators",
     category: "Clean Tech",
     description: "Modular, scalable micro-grid solutions integrating renewable sources for MSME factories.",
-    imgPlaceholder: "bg-blue-100 text-blue-600"
+    image: "https://images.unsplash.com/photo-1509391366360-fe5bb58583bb?q=80&w=800&auto=format&fit=crop"
   }
 ];
 
@@ -40,9 +40,13 @@ export default function Showcase() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {projects.map((project, idx) => (
             <div key={idx} className="group cursor-pointer">
-              <div className={`w-full aspect-video rounded-3xl ${project.imgPlaceholder} flex items-center justify-center p-8 mb-6 border border-slate-100 shadow-sm group-hover:shadow-xl transition-all duration-500 overflow-hidden relative`}>
-                <div className="text-xl font-black opacity-40 select-none">Prototype Concept</div>
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500" />
+              <div className="w-full aspect-video rounded-3xl bg-slate-100 flex items-center justify-center mb-6 border border-slate-100 shadow-sm group-hover:shadow-xl transition-all duration-500 overflow-hidden relative">
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition-colors duration-500" />
                 
                 {/* Overlay link icon */}
                 <div className="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">

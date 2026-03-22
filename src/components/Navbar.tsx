@@ -54,7 +54,7 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center">
           <Link
-            href="/#register"
+            href="/register"
             className="bg-[#0A192F] text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-[#F26522] hover:scale-105 transform transition-all duration-200 shadow-md"
           >
             Register Now
@@ -93,13 +93,13 @@ export default function Navbar() {
                 </a>
               ))}
               <div className="pt-6 pb-2">
-                <a
-                  href="/#register"
+                <Link
+                  href="/register"
                   onClick={() => setMobileMenuOpen(false)}
                   className="block w-full text-center bg-[#0A192F] text-white px-5 py-4 rounded-full text-lg font-bold hover:bg-[#F26522] shadow-md transition-colors"
                 >
                   Register Now
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>

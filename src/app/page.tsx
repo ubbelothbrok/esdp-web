@@ -4,7 +4,7 @@ import AboutSponsors from "@/components/AboutSponsors";
 import Schedule from "@/components/Schedule";
 import Speakers from "@/components/Speakers";
 import Showcase from "@/components/Showcase";
-import RegistrationForm from "@/components/RegistrationForm";
+import RegisterCTA from "@/components/RegisterCTA";
 import FAQ from "@/components/FAQ";
 import VenueMap from "@/components/VenueMap";
 import Footer from "@/components/Footer";
@@ -18,7 +18,7 @@ export default function Home() {
       <Schedule />
       <Speakers />
       <Showcase />
-      <RegistrationForm />
+      <RegisterCTA />
       <FAQ />
       <VenueMap />
       <Footer />

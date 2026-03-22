@@ -31,28 +31,36 @@ export default async function ProgramDetail({ params }: { params: Promise<{ slug
         </Link>
 
         {/* Header */}
-        <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-200 mb-12 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-100/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+        <div className="bg-[#0A192F] rounded-3xl p-8 md:p-12 shadow-sm border border-slate-200 mb-12 relative overflow-hidden group min-h-[300px] flex flex-col justify-end">
+          {/* Background Image with Overlay */}
+          <div className="absolute inset-0 z-0">
+            <img 
+              src={program.image} 
+              alt="" 
+              className="w-full h-full object-cover opacity-40 transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-[#0A192F]/60 to-transparent" />
+          </div>
           
           <div className="relative z-10">
-            <div className="inline-flex items-center space-x-2 bg-slate-100 rounded-full px-4 py-1.5 mb-6 border border-slate-200">
+            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur rounded-full px-4 py-1.5 mb-6 border border-white/10">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F26522] opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F26522]"></span>
               </span>
-              <span className="text-xs font-bold text-slate-600 uppercase tracking-wider">MSME Sponsored Programme</span>
+              <span className="text-xs font-bold text-white uppercase tracking-wider">MSME Sponsored Programme</span>
             </div>
 
-            <h1 className="text-3xl md:text-5xl font-black text-[#0A192F] mb-8 leading-tight">
+            <h1 className="text-3xl md:text-5xl font-black text-white mb-8 leading-tight">
               {program.title}
             </h1>
 
-            <div className="flex flex-wrap gap-6 text-sm font-semibold text-slate-600">
-              <div className="flex items-center bg-slate-50 px-4 py-2 rounded-xl border border-slate-100 shadow-sm">
+            <div className="flex flex-wrap gap-6 text-sm font-semibold text-slate-200">
+              <div className="flex items-center bg-white/5 px-4 py-2 rounded-xl border border-white/10 shadow-sm backdrop-blur-sm">
                 <Calendar className="w-5 h-5 mr-2 text-[#F26522]" />
                 {program.dates}
               </div>
-              <div className="flex items-center bg-slate-50 px-4 py-2 rounded-xl border border-slate-100 shadow-sm">
+              <div className="flex items-center bg-white/5 px-4 py-2 rounded-xl border border-white/10 shadow-sm backdrop-blur-sm">
                 <MapPin className="w-5 h-5 mr-2 text-[#F26522]" />
                 IIT Jammu
               </div>

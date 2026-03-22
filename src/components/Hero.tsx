@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import BlurText from "./BlurText";
 
 const slides = [
   {
@@ -83,18 +84,14 @@ export default function Hero() {
         </motion.div>
 
         {/* Animated Heading */}
-        <AnimatePresence mode="wait">
-          <motion.h1
-            key={`heading-${current}`}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-[1.05] tracking-tight mb-6"
-          >
-            {slides[current].heading}
-          </motion.h1>
-        </AnimatePresence>
+        <BlurText
+          key={`heading-${current}`}
+          text={slides[current].heading}
+          delay={150}
+          animateBy="words"
+          direction="top"
+          className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-[1.05] tracking-tight mb-6"
+        />
 
         {/* Animated Subheading */}
         <AnimatePresence mode="wait">
@@ -113,7 +110,7 @@ export default function Hero() {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 mb-16">
           <Link
-            href="#register"
+            href="/register"
             className="px-8 py-4 bg-white text-[#0A192F] rounded-full font-bold text-lg hover:bg-[#F26522] hover:text-white transition-all shadow-xl flex items-center justify-center group"
           >
             Apply Now
