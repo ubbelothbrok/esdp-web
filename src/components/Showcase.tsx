@@ -5,7 +5,7 @@ const projects = [
     title: "EcoDrone Systems",
     category: "Smart Manufacturing",
     description: "Autonomous aerial vehicles optimized for precision agriculture and MSME supply chain monitoring.",
-    image: "https://images.unsplash.com/photo-1473960103211-8ec305988ad7?q=80&w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1579829366248-204fe8413f31?q=80&w=800&auto=format&fit=crop"
   },
   {
     title: "BioSense Analytics",
@@ -17,7 +17,7 @@ const projects = [
     title: "CleanWatt Innovators",
     category: "Clean Tech",
     description: "Modular, scalable micro-grid solutions integrating renewable sources for MSME factories.",
-    image: "https://images.unsplash.com/photo-1509391366360-fe5bb58583bb?q=80&w=800&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?q=80&w=800&auto=format&fit=crop"
   }
 ];
 
