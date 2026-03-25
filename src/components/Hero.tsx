@@ -3,27 +3,45 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Cpu, Navigation, Zap, TrendingUp } from "lucide-react";
 import BlurText from "./BlurText";
 import ClickSpark from "./ClickSpark";
 
 const slides = [
   {
-    src: "/hero1.png",
     heading: "Nurturing MSME Innovation",
     sub: "A 5-day intensive programme at IIT Jammu, fully sponsored by the Ministry of MSME, designed to transform aspiring entrepreneurs into tomorrow's changemakers.",
   },
   {
-    src: "/hero2.png",
     heading: "Empowering Entrepreneurs",
     sub: "Unlock cutting-edge skills in AI, Smart Manufacturing, Bio-Entrepreneurship, and Sustainable Agriculture — all under one roof.",
   },
   {
-    src: "/hero3.png",
     heading: "Launch Your Startup Journey",
     sub: "Gain mentorship, hands-on workshops, and networking opportunities with industry leaders and IIT Jammu faculty.",
   },
 ];
+
+const GlossyCoin = ({ icon: Icon, color, delay = 0, className = "" }: { icon: any, color: string, delay?: number, className?: string }) => (
+  <motion.div
+    initial={{ y: 0, rotateZ: 0 }}
+    animate={{ 
+      y: [-15, 15, -15],
+      rotateZ: [-10, 10, -10]
+    }}
+    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay }}
+    className={`absolute z-10 ${className}`}
+  >
+    <div className={`w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center relative overflow-hidden shadow-2xl border-t-2 border-white/50 backdrop-blur-sm`}
+         style={{ background: `linear-gradient(135deg, ${color} 0%, #ffffff 100%)` }}>
+      {/* Glossy overlay */}
+      <div className="absolute top-0 left-0 w-full h-1/2 bg-white/30 rounded-full blur-[2px]" />
+      <Icon className="w-8 h-8 md:w-10 md:h-10 text-white drop-shadow-lg" strokeWidth={1.5} />
+      {/* Inner Shadow */}
+      <div className="absolute inset-0 rounded-full shadow-[inset_0_-4px_12px_rgba(0,0,0,0.2)]" />
+    </div>
+  </motion.div>
+);
 
 export default function Hero() {
   const [current, setCurrent] = useState(0);
@@ -35,114 +53,136 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, []);
 
-  const prev = () => setCurrent((c) => (c - 1 + slides.length) % slides.length);
-  const next = () => setCurrent((c) => (c + 1) % slides.length);
   return (
-    <ClickSpark sparkColor="#F26522" sparkSize={10} sparkRadius={15} sparkCount={8} duration={400}>
-      <section className="relative w-full min-h-screen overflow-hidden">
-
-        {/* ── Sliding Backgrounds ── */}
-        {slides.map((slide, idx) => (
-          <div
-            key={idx}
-            className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out ${
-              idx === current ? "opacity-100 z-0" : "opacity-0 -z-10"
-            }`}
-          >
-            <img
-              src={slide.src}
-              alt={slide.heading}
-              className="w-full h-full object-cover object-center"
-              onError={(e) => {
-                const fallbacks = [
-                  "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=2000&auto=format&fit=crop",
-                  "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop",
-                  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2000&auto=format&fit=crop",
-                ];
-                e.currentTarget.src = fallbacks[idx] ?? fallbacks[0];
+    <ClickSpark sparkColor="#8B5CF6" sparkSize={10} sparkRadius={15} sparkCount={8} duration={400}>
+      <section className="relative w-full min-h-screen overflow-hidden bg-white flex flex-col items-center justify-center pt-24 pb-20">
+        
+        {/* ── Background Wavy Mesh Ribbon ── */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <svg className="w-full h-full opacity-60" viewBox="0 0 1440 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <motion.path
+              initial={{ d: "M-100,600 C200,500 400,700 800,500 C1200,300 1400,500 1600,400" }}
+              animate={{ 
+                d: [
+                  "M-100,600 C200,500 400,700 800,500 C1200,300 1400,500 1600,400",
+                  "M-100,550 C250,550 450,650 850,450 C1250,250 1450,550 1600,350",
+                  "M-100,600 C200,500 400,700 800,500 C1200,300 1400,500 1600,400"
+                ]
               }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+              stroke="url(#paint0_linear)"
+              strokeWidth="120"
+              strokeLinecap="round"
+              className="opacity-20 blur-3xl"
             />
-            {/* Dark gradient overlay so text is readable */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
-          </div>
-        ))}
-
-        {/* ── Foreground Content ── */}
-        <div className="relative z-10 flex flex-col items-start justify-center min-h-screen px-8 sm:px-16 lg:px-24 pt-28 pb-20 max-w-5xl">
-
-          {/* MSME badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur border border-white/20 rounded-full px-4 py-1.5 mb-6"
-          >
-            <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F26522] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F26522]" />
-            </span>
-            <span className="text-xs font-semibold text-white uppercase tracking-wider">Fully Sponsored by MSME</span>
-          </motion.div>
-
-          {/* Animated Heading */}
-          <BlurText
-            key={`heading-${current}`}
-            text={slides[current].heading}
-            delay={150}
-            animateBy="words"
-            direction="top"
-            className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-[1.05] tracking-tight mb-6"
-          />
-
-          {/* Animated Subheading */}
-          <AnimatePresence mode="wait">
-            <motion.p
-              key={`sub-${current}`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-base sm:text-lg lg:text-xl text-white/80 max-w-2xl mb-10 leading-relaxed"
-            >
-              {slides[current].sub}
-            </motion.p>
-          </AnimatePresence>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-16">
-            <Link
-              href="/register"
-              className="px-8 py-4 bg-white text-[#0A192F] rounded-full font-bold text-lg hover:bg-[#F26522] hover:text-white transition-all shadow-xl flex items-center justify-center group"
-            >
-              Apply Now
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-            <Link
-              href="/programs"
-              className="px-8 py-4 bg-transparent text-white border-2 border-white/60 rounded-full font-bold text-lg hover:border-white hover:bg-white/10 transition-all flex items-center justify-center"
-            >
-              Browse Programs
-            </Link>
-          </div>
-
+            <defs>
+              <linearGradient id="paint0_linear" x1="-100" y1="500" x2="1600" y2="400" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#A855F7" />
+                <stop offset="1" stopColor="white" />
+              </linearGradient>
+            </defs>
+          </svg>
         </div>
 
+        {/* ── Floating 3D/Glossy Elements ── */}
+        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 max-w-7xl mx-auto z-10 w-full hidden lg:block h-full">
+          {/* Central Portal Torus */}
+          <motion.div
+            initial={{ rotate: 0 }}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+            className="absolute top-[35%] left-[10%] w-[350px] h-[350px] border-[1px] border-purple-200 rounded-full opacity-20 pointer-events-none"
+          />
+          <motion.div
+            initial={{ rotate: 0 }}
+            animate={{ rotate: -360 }}
+            transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+            className="absolute top-[32%] left-[8%] w-[400px] h-[400px] border-[1px] border-purple-100 rounded-full opacity-10 pointer-events-none"
+          />
 
+          {/* Group of Glossy Coins */}
+          <GlossyCoin icon={Cpu} color="#A855F7" delay={0} className="top-[30%] left-[15%]" />
+          <GlossyCoin icon={Navigation} color="#3B82F6" delay={1.5} className="top-[45%] left-[5%]" />
+          <GlossyCoin icon={Zap} color="#EC4899" delay={3} className="top-[55%] left-[18%]" />
+          <GlossyCoin icon={TrendingUp} color="#F59E0B" delay={4.5} className="top-[40%] left-[22%]" />
+        </div>
 
-        {/* Dot indicators */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center space-x-3">
+        {/* ── Main Foreground Content (Centered) ── */}
+        <div className="relative z-20 text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
+          <motion.div
+            key={`content-${current}`}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-center"
+          >
+            {/* MSME badge */}
+            <div className="inline-flex items-center space-x-2 bg-slate-100/80 backdrop-blur-md border border-slate-200 rounded-full px-4 py-2 mb-10 shadow-sm">
+              <span className="flex h-2 w-2 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#F26522] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#F26522]" />
+              </span>
+              <span className="text-[10px] font-bold text-slate-600 uppercase tracking-[0.2em]">Next-Gen Innovation Platform</span>
+            </div>
+
+            <BlurText
+              key={`heading-${current}`}
+              text={slides[current].heading}
+              delay={50}
+              animateBy="words"
+              direction="top"
+              className="text-6xl md:text-8xl lg:text-9xl font-black text-black leading-[0.9] tracking-tighter mb-10"
+            />
+
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={`sub-${current}`}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-lg md:text-xl text-slate-500 max-w-2xl mb-14 leading-relaxed font-medium"
+              >
+                {slides[current].sub}
+              </motion.p>
+            </AnimatePresence>
+
+            <div className="flex flex-col sm:flex-row gap-6 mb-12">
+              <Link
+                href="/register"
+                className="px-10 py-5 bg-black text-white hover:bg-purple-600 transition-all duration-300 rounded-2xl font-black text-lg shadow-2xl flex items-center group"
+              >
+                Join Now
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                href="/programs"
+                className="px-10 py-5 bg-slate-50 text-slate-900 border border-slate-200 rounded-2xl font-black text-lg hover:bg-slate-100 transition-all duration-300"
+              >
+                Browse Collection
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* ── Dot indicators (Centered) ── */}
+        <div className="absolute bottom-16 z-20 flex items-center space-x-4">
           {slides.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}
               aria-label={`Go to slide ${i + 1}`}
-              className={`w-12 h-1.5 rounded-full transition-all duration-500 ${
-                i === current ? "bg-[#F26522] w-20" : "bg-white/30 hover:bg-white/50"
+              className={`w-3 h-3 rounded-full transition-all duration-500 border-2 ${
+                i === current ? "bg-black border-black w-10" : "bg-transparent border-slate-300 hover:border-slate-500"
               }`}
             />
           ))}
         </div>
+
       </section>
     </ClickSpark>
   );
 }
+
+
+
