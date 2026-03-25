@@ -19,11 +19,12 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "Programs", href: "/programs" },
-    { name: "About", href: "/#about" },
+    { name: "About", href: "/about" },
     { name: "Schedule", href: "/#schedule" },
     { name: "Speakers", href: "/#speakers" },
     { name: "FAQ", href: "/#faq" },
   ];
+
 
   return (
     <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">

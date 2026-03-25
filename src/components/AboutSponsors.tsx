@@ -1,4 +1,6 @@
-import { Award, Target, Users } from "lucide-react";
+import { Award, Target, Users, ArrowRight } from "lucide-react";
+import Link from "next/link";
+
 
 export default function AboutSponsors() {
   const benefits = [
@@ -23,14 +25,21 @@ export default function AboutSponsors() {
     <section id="about" className="py-24 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-[#F26522] font-bold tracking-wider uppercase text-sm mb-2">About The Program</h2>
+          <h2 className="text-[#F26522] font-bold tracking-wider uppercase text-sm mb-2">Our Partners</h2>
           <h3 className="text-3xl md:text-4xl font-black text-[#0A192F] mb-6">
             Bridging the gap between engineering and entrepreneurship
           </h3>
-          <p className="text-lg text-slate-600">
+          <p className="text-lg text-slate-600 mb-8">
             The Advanced Entrepreneurship and Skill Development Programme (A-ESDP) 2026 is an initiative hosted at IIT Jammu to transform innovative ideas into viable MSME startups.
           </p>
+          <div className="flex justify-center">
+            <Link href="/about" className="inline-flex items-center space-x-2 text-[#0A192F] font-bold border-b-2 border-[#F26522] hover:text-[#F26522] transition-colors pb-1 group">
+              <span>Read more about MSME & IIT Jammu</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
         </div>
+
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
           {benefits.map((benefit, idx) => (
