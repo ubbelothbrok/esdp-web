@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, LogIn, Moon, ArrowRight } from "lucide-react";
+import { Menu, X, LogIn, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
@@ -54,9 +54,6 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden md:flex items-center space-x-5">
-          <button className="text-slate-900 hover:text-slate-600 transition-colors p-1" aria-label="Toggle dark mode">
-            <Moon className="w-6 h-6 stroke-[2]" />
-          </button>
           <Link
             href="/login"
             className="flex items-center bg-[#111827] text-white px-7 py-3.5 rounded-full text-[13px] font-bold tracking-widest hover:bg-[#1f2937] hover:scale-105 transform transition-all duration-200 shadow-lg"

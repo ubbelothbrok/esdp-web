@@ -1,17 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ESDP Platform
 
 ## Getting Started
 
-First, run the development server:
+To run the full application, you will need to start both the Django backend and the Next.js frontend in separate terminal windows on your machine.
+
+### 1. Start the Backend (Django)
+
+Open a new terminal window from the project root folder and run:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd esdp-backend
+source .venv/bin/activate
+python manage.py runserver
+```
+
+### 2. Start the Frontend (Next.js)
+
+Open another terminal window from the project root folder and run:
+
+```bash
+cd esdp-web
+npm run dev -- --port 3000
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
