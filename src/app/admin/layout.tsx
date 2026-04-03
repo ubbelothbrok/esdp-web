@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, LogOut, CheckSquare } from "lucide-react";
+import { LayoutDashboard, LogOut, CheckSquare, Users } from "lucide-react";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -60,6 +60,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           >
             <CheckSquare className="w-5 h-5 mr-3" />
             Registrations
+          </Link>
+          <Link
+            href="/admin/mentors"
+            className={`flex items-center px-4 py-3 rounded-xl transition-colors font-medium text-sm ${
+              pathname.includes("/admin/mentors")
+                ? "bg-orange-50 text-[#F26522]"
+                : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+            }`}
+          >
+            <Users className="w-5 h-5 mr-3" />
+            Manage Mentors
           </Link>
         </nav>
 
