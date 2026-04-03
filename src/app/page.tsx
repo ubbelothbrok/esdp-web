@@ -1,7 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import AboutSponsors from "@/components/AboutSponsors";
-import Schedule from "@/components/Schedule";
 import Speakers from "@/components/Speakers";
 import Showcase from "@/components/Showcase";
 import RegisterCTA from "@/components/RegisterCTA";
@@ -15,7 +14,6 @@ export default function Home() {
       <Navbar />
       <Hero />
       <AboutSponsors />
-      <Schedule />
       <Speakers />
       <Showcase />
       <RegisterCTA />
