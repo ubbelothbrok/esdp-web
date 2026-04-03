@@ -2,9 +2,21 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ArrowRight, Calendar, MapPin, Users } from "lucide-react";
 import Link from "next/link";
-import { programs } from "@/data/programs";
+import { getImageUrl } from "@/lib/config";
 
-export default function ProgramsPage() {
+interface ProgramType {
+  slug: string;
+  title: string;
+  dates: string;
+  deadline: string;
+  coordinatorsText: string;
+  image: string;
+}
+
+export default async function ProgramsPage() {
+  const res = await fetch('http://127.0.0.1:8000/api/programs/', { cache: 'no-store' });
+  const programs: ProgramType[] = await res.json();
+
   return (
     <main className="min-h-screen bg-slate-50 selection:bg-[#F26522] selection:text-white pb-0">
       <Navbar />
@@ -24,12 +36,18 @@ export default function ProgramsPage() {
           {programs.map((prog, idx) => (
             <div key={idx} className="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col h-full group">
               {/* Program Image */}
-              <div className="relative h-48 sm:h-52 w-full overflow-hidden">
-                <img
-                  src={prog.image}
-                  alt={prog.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+              <div className="relative h-48 sm:h-52 w-full overflow-hidden bg-gradient-to-br from-[#0A192F] to-[#1a3a5c]">
+                {getImageUrl(prog.image) ? (
+                  <img
+                    src={getImageUrl(prog.image)}
+                    alt={prog.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <span className="text-white/20 text-5xl font-black">{prog.title.charAt(0)}</span>
+                  </div>
+                )}
                 <div className="absolute top-4 left-4">
                   <div className="inline-flex items-center space-x-2 bg-white/90 backdrop-blur rounded-full px-3 py-1 border border-white/20 shadow-sm">
                     <span className="relative flex h-2 w-2">

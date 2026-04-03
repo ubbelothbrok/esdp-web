@@ -1,20 +1,54 @@
-import { programs } from "@/data/programs";
 import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import { ArrowLeft, Calendar, MapPin, CheckCircle2 } from "lucide-react";
 import CoordinatorImage from "@/components/CoordinatorImage";
+import { getImageUrl } from "@/lib/config";
 
-export function generateStaticParams() {
-  return programs.map((prog) => ({
-    slug: prog.slug,
-  }));
+interface Coordinator {
+  name: string;
+  role: string;
+  email: string;
+  image: string;
+}
+
+interface ProgramDetail {
+  slug: string;
+  title: string;
+  dates: string;
+  deadline: string;
+  description: string;
+  whoCanApply: string;
+  image: string;
+  coordinators: Coordinator[];
+  highlights: string[];
+}
+
+export async function generateStaticParams() {
+  try {
+    const res = await fetch('http://127.0.0.1:8000/api/programs/');
+    const programs = await res.json();
+    return programs.map((prog: any) => ({
+      slug: prog.slug,
+    }));
+  } catch (e) {
+    return [];
+  }
 }
 
 export default async function ProgramDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const program = programs.find((p) => p.slug === slug);
+  
+  let program: ProgramDetail | null = null;
+  try {
+    const res = await fetch(`http://127.0.0.1:8000/api/programs/${slug}/`, { cache: 'no-store' });
+    if (res.ok) {
+      program = await res.json();
+    }
+  } catch (e) {
+    // handled by notFound below
+  }
 
   if (!program) {
     notFound();
@@ -34,11 +68,13 @@ export default async function ProgramDetail({ params }: { params: Promise<{ slug
         <div className="bg-[#0A192F] rounded-3xl p-8 md:p-12 shadow-sm border border-slate-200 mb-12 relative overflow-hidden group min-h-[300px] flex flex-col justify-end">
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 z-0">
-            <img 
-              src={program.image} 
-              alt="" 
-              className="w-full h-full object-cover opacity-40 transition-transform duration-700 group-hover:scale-105"
-            />
+            {getImageUrl(program.image) && (
+              <img 
+                src={getImageUrl(program.image)} 
+                alt="" 
+                className="w-full h-full object-cover opacity-40 transition-transform duration-700 group-hover:scale-105"
+              />
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-[#0A192F]/60 to-transparent" />
           </div>
           

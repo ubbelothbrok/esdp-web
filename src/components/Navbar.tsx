@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LogIn, Moon, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
@@ -53,12 +53,16 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center">
+        <div className="hidden md:flex items-center space-x-5">
+          <button className="text-slate-900 hover:text-slate-600 transition-colors p-1" aria-label="Toggle dark mode">
+            <Moon className="w-6 h-6 stroke-[2]" />
+          </button>
           <Link
-            href="/register"
-            className="bg-[#0A192F] text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-[#F26522] hover:scale-105 transform transition-all duration-200 shadow-md"
+            href="/login"
+            className="flex items-center bg-[#111827] text-white px-7 py-3.5 rounded-full text-[13px] font-bold tracking-widest hover:bg-[#1f2937] hover:scale-105 transform transition-all duration-200 shadow-lg"
           >
-            Register Now
+            GET STARTED
+            <ArrowRight className="w-4 h-4 ml-2 stroke-[2.5]" />
           </Link>
         </div>
 
@@ -93,13 +97,14 @@ export default function Navbar() {
                   {link.name}
                 </a>
               ))}
-              <div className="pt-6 pb-2">
+              <div className="pt-6 pb-2 space-y-3">
                 <Link
-                  href="/register"
+                  href="/login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full text-center bg-[#0A192F] text-white px-5 py-4 rounded-full text-lg font-bold hover:bg-[#F26522] shadow-md transition-colors"
+                  className="flex items-center justify-center w-full bg-[#111827] text-white px-5 py-4 rounded-full text-sm font-bold tracking-widest hover:bg-[#1f2937] shadow-lg transition-colors"
                 >
-                  Register Now
+                  GET STARTED
+                  <ArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </div>
             </div>

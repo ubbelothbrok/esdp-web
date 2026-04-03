@@ -111,11 +111,35 @@ export default function RegistrationForm({ standalone = false }: { standalone?: 
               prototypeIdea: ""
             }}
             validationSchema={RegistrationSchema}
-            onSubmit={(values, { setSubmitting }) => {
-              setTimeout(() => {
-                setIsSubmitted(true);
+            onSubmit={async (values, { setSubmitting }) => {
+              try {
+                const res = await fetch("http://127.0.0.1:8000/api/registrations/", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    full_name: values.fullName,
+                    email: values.email,
+                    phone: values.phone,
+                    institution: values.institution,
+                    category: values.category,
+                    prototype_idea: values.prototypeIdea,
+                  }),
+                });
+                
+                if (res.ok) {
+                  setIsSubmitted(true);
+                } else {
+                  console.error("Submission failed");
+                  alert("Failed to submit, please try again.");
+                }
+              } catch (e) {
+                console.error(e);
+                alert("Failed to submit, please try again.");
+              } finally {
                 setSubmitting(false);
-              }, 1500);
+              }
             }}
           >
             {({ isSubmitting, errors, touched }) => (
