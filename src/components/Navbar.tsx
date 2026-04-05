@@ -29,18 +29,17 @@ export default function Navbar() {
   return (
     <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
       <div
-        className={`pointer-events-auto w-full max-w-5xl transition-all duration-300 rounded-full px-6 py-3 flex items-center justify-between shadow-lg ${
-          isScrolled 
-            ? "bg-white/90 backdrop-blur-xl border border-slate-200/50 shadow-slate-300/30" 
+        className={`pointer-events-auto w-full max-w-5xl transition-all duration-300 rounded-full px-6 py-3 flex items-center justify-between shadow-lg ${isScrolled
+            ? "bg-white/90 backdrop-blur-xl border border-slate-200/50 shadow-slate-300/30"
             : "bg-white/80 backdrop-blur-md border border-slate-200/30 shadow-slate-200/20"
-        }`}
+          }`}
       >
         <div className="flex-shrink-0 flex items-center">
           <Link href="/" className="text-xl font-black tracking-tighter text-[#0A192F]">
             A-ESDP <span className="text-[#F26522]">2026</span>
           </Link>
         </div>
-        
+
         <nav className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
             <Link

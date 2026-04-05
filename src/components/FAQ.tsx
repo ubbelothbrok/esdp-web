@@ -42,24 +42,22 @@ export default function FAQ() {
 
         <div className="space-y-4">
           {faqs.map((faq, idx) => (
-            <div 
-              key={idx} 
-              className={`bg-white rounded-2xl border transition-colors duration-300 overflow-hidden ${
-                openIndex === idx ? 'border-[#F26522] shadow-md' : 'border-slate-200 hover:border-slate-300'
-              }`}
+            <div
+              key={idx}
+              className={`bg-white rounded-2xl border transition-colors duration-300 overflow-hidden ${openIndex === idx ? 'border-[#F26522] shadow-md' : 'border-slate-200 hover:border-slate-300'
+                }`}
             >
               <button
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
                 className="w-full flex justify-between items-center p-6 sm:p-8 text-left focus:outline-none"
               >
                 <span className="text-lg font-bold text-[#0A192F] pr-8">{faq.question}</span>
-                <span className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
-                  openIndex === idx ? 'bg-[#F26522] text-white' : 'bg-slate-100 text-slate-500'
-                }`}>
+                <span className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${openIndex === idx ? 'bg-[#F26522] text-white' : 'bg-slate-100 text-slate-500'
+                  }`}>
                   {openIndex === idx ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                 </span>
               </button>
-              
+
               <AnimatePresence>
                 {openIndex === idx && (
                   <motion.div

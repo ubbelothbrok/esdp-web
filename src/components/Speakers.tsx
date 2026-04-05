@@ -90,13 +90,13 @@ export default function Speakers() {
                 <div className={`w-32 h-32 rounded-full ${speaker.color} flex items-center justify-center text-3xl font-black text-white shadow-inner group-hover:scale-105 transition-transform duration-300`}>
                   {speaker.initials}
                 </div>
-                
+
                 {/* LinkedIn Badge */}
-                <a 
-                  href={speaker.linkedin_url || "#"} 
+                <a
+                  href={speaker.linkedin_url || "#"}
                   target={speaker.linkedin_url ? "_blank" : undefined}
                   rel={speaker.linkedin_url ? "noopener noreferrer" : undefined}
-                  aria-label={`LinkedIn of ${speaker.name}`} 
+                  aria-label={`LinkedIn of ${speaker.name}`}
                   className="absolute bottom-0 right-1/2 translate-x-12 translate-y-2 bg-[#0A66C2] text-white p-2 rounded-full border-2 border-white hover:bg-blue-700 transition-colors shadow-md"
                 >
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -104,7 +104,7 @@ export default function Speakers() {
                   </svg>
                 </a>
               </div>
-              
+
               <div className="text-center">
                 <h4 className="text-xl font-bold text-[#0A192F] mb-1">{speaker.name}</h4>
                 <p className="text-sm font-semibold text-[#F26522] mb-4">{speaker.role}</p>

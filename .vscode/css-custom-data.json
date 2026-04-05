@@ -1,0 +1,34 @@
+{
+  "atRules": [
+    {
+      "name": "@theme",
+      "description": "Tailwind CSS v4 theme variables block.",
+      "references": [
+        {
+          "name": "Tailwind CSS v4 Documentation",
+          "url": "https://tailwindcss.com/docs/v4-beta#css-first-configuration"
+        }
+      ]
+    },
+    {
+      "name": "@utility",
+      "description": "Tailwind CSS v4 custom utility definition.",
+      "references": [
+        {
+          "name": "Tailwind CSS v4 Documentation",
+          "url": "https://tailwindcss.com/docs/v4-beta#css-first-configuration"
+        }
+      ]
+    },
+    {
+      "name": "@variant",
+      "description": "Tailwind CSS v4 custom variant definition.",
+      "references": [
+        {
+          "name": "Tailwind CSS v4 Documentation",
+          "url": "https://tailwindcss.com/docs/v4-beta#css-first-configuration"
+        }
+      ]
+    }
+  ]
+}

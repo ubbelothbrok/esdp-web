@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="bg-[#0A192F] text-slate-300 py-12 lg:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-8">
-          
+
           {/* Brand Info */}
           <div className="space-y-4">
             <h3 className="text-2xl font-black tracking-tighter text-white">

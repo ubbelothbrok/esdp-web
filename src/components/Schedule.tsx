@@ -56,9 +56,8 @@ export default function Schedule() {
               <button
                 key={idx}
                 onClick={() => setActiveTab(idx)}
-                className={`relative px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
-                  activeTab === idx ? "text-[#0A192F]" : "text-slate-300 hover:text-white"
-                }`}
+                className={`relative px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${activeTab === idx ? "text-[#0A192F]" : "text-slate-300 hover:text-white"
+                  }`}
               >
                 {activeTab === idx && (
                   <motion.div
@@ -88,12 +87,11 @@ export default function Schedule() {
                 <div key={idx} className="mb-10 last:mb-0 relative pl-8 sm:pl-12 group">
                   {/* Timeline Dot */}
                   <div className={`absolute -left-[9px] top-1 w-4 h-4 rounded-full border-4 border-[#0A192F] transition-colors duration-300 ${event.type === 'break' ? 'bg-slate-500 group-hover:bg-slate-400' : 'bg-[#F26522] group-hover:bg-[#FF834A]'}`} />
-                  
-                  <div className={`p-6 rounded-2xl border transition-all duration-300 ${
-                    event.type === 'break' 
-                      ? 'bg-white/5 border-white/5 border-dashed' 
+
+                  <div className={`p-6 rounded-2xl border transition-all duration-300 ${event.type === 'break'
+                      ? 'bg-white/5 border-white/5 border-dashed'
                       : 'bg-gradient-to-br from-white/5 to-transparent border-white/10 hover:border-white/20 hover:bg-white/10 hover:shadow-lg hover:shadow-black/20'
-                  }`}>
+                    }`}>
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-3">
                       <div>
                         <div className="flex items-center text-[#F26522] text-sm font-semibold mb-2">
@@ -104,7 +102,7 @@ export default function Schedule() {
                           {event.title}
                         </h4>
                       </div>
-                      
+
                       {event.type !== 'break' && (
                         <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-900/50 border border-blue-800 text-blue-200 text-xs font-semibold whitespace-nowrap hidden md:inline-flex">
                           <Tag className="w-3 h-3 mr-1.5" />
@@ -119,7 +117,7 @@ export default function Schedule() {
                         {event.speaker}
                       </div>
                     )}
-                    
+
                     {event.type !== 'break' && (
                       <div className="inline-flex md:hidden items-center mt-3 px-3 py-1 rounded-full bg-blue-900/50 border border-blue-800 text-blue-200 text-xs font-semibold">
                         {event.track}

@@ -68,7 +68,7 @@ export default function AboutSponsors() {
                 <div className="text-xs font-semibold text-slate-500 uppercase">Government of India</div>
               </div>
             </div>
-            
+
             <div className="hidden md:block w-px h-16 bg-slate-200"></div>
 
             {/* IIT Jammu Logo */}

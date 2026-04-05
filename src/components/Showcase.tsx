@@ -41,19 +41,19 @@ export default function Showcase() {
           {projects.map((project, idx) => (
             <div key={idx} className="group cursor-pointer">
               <div className="w-full aspect-video rounded-3xl bg-slate-100 flex items-center justify-center mb-6 border border-slate-100 shadow-sm group-hover:shadow-xl transition-all duration-500 overflow-hidden relative">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
+                <img
+                  src={project.image}
+                  alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition-colors duration-500" />
-                
+
                 {/* Overlay link icon */}
                 <div className="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
                   <ArrowUpRight className="w-5 h-5 text-[#0A192F]" />
                 </div>
               </div>
-              
+
               <div className="px-2">
                 <div className="text-xs font-bold text-[#F26522] uppercase tracking-wider mb-2">
                   {project.category}

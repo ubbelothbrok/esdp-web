@@ -1,17 +1,28 @@
 @import "tailwindcss";
 
-@theme inline {
+@theme {
   --color-primary: #0A192F;
   --color-accent: #F26522;
   --color-surface: #ffffff;
   --color-surface-muted: #f8fafc;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2.5rem;
 }
 
 @layer base {
+  :root {
+    --primary: #0A192F;
+    --accent: #F26522;
+  }
+  
   body {
     background-color: var(--color-surface-muted);
     color: var(--color-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
