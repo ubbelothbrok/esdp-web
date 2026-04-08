@@ -9,9 +9,7 @@ To run the full application, you will need to start both the Django backend and 
 Open a new terminal window from the project root folder and run:
 
 ```bash
-cd esdp-backend
-source .venv/bin/activate
-python manage.py runserver
+cd esdp-backend && .venv/bin/python manage.py runserver
 ```
 
 ### 2. Start the Frontend (Next.js)
@@ -19,8 +17,7 @@ python manage.py runserver
 Open another terminal window from the project root folder and run:
 
 ```bash
-cd esdp-web
-npm run dev -- --port 3000
+cd esdp-web && npm run dev -- --port 3000
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
